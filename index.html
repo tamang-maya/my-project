@@ -1,92 +1,134 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sakura Shop Nepal</title>
-
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
-
 <body>
-
-    <h1>🌸 Sakura Shop Nepal</h1>
-    <p>日本の商品をネパールへ届けます！</p>
-
-    <button onclick="showProducts()">商品を見る</button>
-
-    <hr>
-
-    <div class="products">
-
-        <div class="product">
-            <img src="canmake-lip.webp.webp" alt="CANMAKE リップ">
-            <h2>CANMAKE リップ</h2>
-            <p>¥700</p>
-            <button onclick="addCart()">カートに追加</button>
-            <button onclick="showProducts()">商品を見る</button>
-        </div>
-
-        <div class="product">
-            <img src="images/shiseido-sunscreen.webp" alt="資生堂 日焼け止め">
-            <h2>資生堂 日焼け止め</h2>
-            <p>¥2,500</p>
-            <button onclick="addCart()">カートに追加</button>
-            <button onclick="showProducts()">商品を見る</button>
-        </div>
-
-        <div class="product">
-            <img src="hadalabo-lotion.webp" alt="肌ラボ 化粧水">
-            <h2>肌ラボ 化粧水</h2>
-            <p>¥980</p>
-            <button onclick="addCart()">カートに追加</button>
-            <button onclick="showProducts()">商品を見る</button>
-        </div>
-
-        <div class="product">
-            <img src="images/sunscreen.webp" alt="DHC クレンジングオイル">
-            <h2>DHC クレンジングオイル</h2>
-            <p>¥1,800</p>
-            <button onclick="addCart()">カートに追加</button>
-            <button onclick="showProducts()">商品を見る</button>
-        </div>
-
-        <div class="product">
-            <img src="images/cezanne-foundation.webp" alt="CEZANNE ファンデーション">
-            <h2>CEZANNE ファンデーション</h2>
-            <p>¥880</p>
-            <button onclick="addCart()">カートに追加</button>
-            <button onclick="showProducts()">商品を見る</button>
-        </div>
-
-        <div class="product">
-            <img src="skii.jpg" alt="SK-II フェイシャルトリートメントエッセンス">
-            <h2>SK-II エッセンス</h2>
-            <p>¥23,000</p>
-            <button onclick="addCart()">カートに追加</button>
-            <button onclick="showProducts()">商品を見る</button>
-        </div>
-
-        <div class="product">
-            <img src="KOSE.jpg" alt="KOSE 美容液">
-            <h2>KOSE 美容液</h2>
-            <p>¥3,500</p>
-            <button onclick="addCart()">カートに追加</button>
-            <button onclick="showProducts()">商品を見る</button>
-        </div>
-
-        <div class="product">
-            <img src="anessa .jpg" alt="ANESSA 日焼け止め">
-            <h2>ANESSA 日焼け止め</h2>
-            <p>¥2,800</p>
-            <button onclick="addCart()">カートに追加</button>
-            <button onclick="showProducts()">商品を見る</button>
-        </div>
-
+    <header>
+        <img src="header img.png" alt="Sakura Shop Nepal Logo" class="header-image">
+    </header>
+    <div class="logo">
+        <img src="logo.png" alt="Sakura Shop Nepal Logo">
     </div>
 
+    <h1>🌸 Sakura Shop Nepal</h1>
+    <h3>日本の化粧品をネパールへ届けます！</h3>
+    <p>ネパールで日本の化粧品を購入するのは難しいですが、Sakura Shop Nepalでは、日本の化粧品をネパールにお届けします。ぜひご利用ください！</p>
+
+    <!-- API Live Status Badge -->
+    <div style="background: #e0f2fe; color: #0369a1; padding: 10px; border-radius: 5px; margin: 15px 0; display: inline-block; font-size: 0.9rem;">
+        🌐 Live Exchange Rate API Status: <span id="api-status" style="font-weight: bold;">Loading conversion rate...</span>
+    </div>
+    <br>
+
+    <button onclick="showProducts()">商品を見る</button>
+    <br><br>
+
+    <input
+        type="text"
+        id="searchbox"
+        placeholder="商品を入力"
+        onkeypress="enterSearch(event)"
+    >
+    <button onclick="searchProducts()">検索</button>
+    <button onclick="showALLProducts()">すべての商品表示</button>
+
+    <!-- Currency Conversion Feature Box -->
+    <div style="margin: 20px 0; padding: 15px; background: #fff5f5; border: 1px solid #fecdd3; border-radius: 8px;">
+        <p style="font-weight: bold; margin-bottom: 8px; color: #be123c;">🇳🇵 通貨変換ツール (Currency Tool)</p>
+        <button onclick="convertToNPR()" style="background-color: #df4759; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">ネパール・ルピーに変換する</button>
+    </div>
+
+    <div class="products">
+        <!-- data-price attributes help JavaScript calculate currency dynamically -->
+        <div class="product" data-price="700">
+            <img src="canmake-lip.webp.webp">
+            <h2>CANMAKE リップ</h2>
+            <p class="price-display">¥700</p>
+            <button onclick="addCart(this)">カートに追加</button>
+            <button onclick="showProduct(this)">商品を見る</button>
+        </div>
+
+        <div class="product" data-price="2500">
+            <img src="anessa.jpg" alt="資生堂 日焼け止め">
+            <h2>資生堂 日焼け止め</h2>
+            <p class="price-display">¥2,500</p>
+            <button onclick="addCart(this)">カートに追加</button>
+            <button onclick="showProduct(this)">商品を見る</button>
+        </div>
+
+        <div class="product" data-price="980">
+            <img src="hadalabo-lotion.webp" alt="肌ラボ 化粧水">
+            <h2>肌ラボ 化粧水</h2>
+            <p class="price-display">¥980</p>
+            <button onclick="addCart(this)">カートに追加</button>
+            <button onclick="showProduct(this)">商品を見る</button>
+        </div>
+
+        <div class="product" data-price="1800">
+            <img src="deep cleansing.jpg" alt="DHC クレンジングオイル">
+            <h2>DHC クレンジングオイル</h2>
+            <p class="price-display">¥1,800</p>
+            <button onclick="addCart(this)">カートに追加</button>
+            <button onclick="showProduct(this)">商品を見る</button>
+        </div>
+
+        <div class="product" data-price="880">
+            <img src="cezanne.png" alt="CEZANNE ファンデーション">
+            <h2>CEZANNE ファンデーション</h2>
+            <p class="price-display">¥880</p>
+            <button onclick="addCart(this)">カートに追加</button>
+            <button onclick="showProduct(this)">商品を見る</button>
+        </div>
+
+        <div class="product" data-price="23000">
+            <img src="skii.jpg" alt="SK-II フェイシャルトリートメントエッセンス">
+            <h2>SK-II エッセンス</h2>
+            <p class="price-display">¥23,000</p>
+            <button onclick="addCart(this)">カートに追加</button>
+            <button onclick="showProduct(this)">商品を見る</button>
+        </div>
+
+        <div class="product" data-price="3500">
+            <img src="KOSE.jpg" alt="KOSE 美容液">
+            <h2>KOSE 美容液</h2>
+            <p class="price-display">¥3,500</p>
+            <button onclick="addCart(this)">カートに追加</button>
+            <button onclick="showProduct(this)">商品を見る</button>
+        </div>
+
+        <div class="product" data-price="2800">
+            <img src="anessa .jpg" alt="ANESSA 日焼け止め">
+            <h2>ANESSA 日焼け止め</h2>
+            <p class="price-display">¥2,800</p>
+            <button onclick="addCart(this)">カートに追加</button>
+            <button onclick="showProduct(this)">商品を見る</button>
+        </div>
+    </div>
+
+    <h2>カート</h2>
+    <div id="cartItems" class="cart">
+        <p>カートに商品がありません。</p>
+    </div>
+
+    <h3>合計: <span id="totalPrice">¥0</span></h3>
+    <button onclick="checkout()">購入手続き</button>
+
     <h2>おすすめ商品</h2>
+
+    <div id="popup" class="popup">
+        <div class="popup-box">
+            <img id="popupImg">
+            <h2 id="popupTitle"></h2>
+            <p id="popupPrice"></p>
+            <button onclick="closePopup()">閉じる</button>
+        </div>
+    </div>
 
 </body>
 </html>

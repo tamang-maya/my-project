@@ -1,15 +1,48 @@
-body{
+body {
     font-family: Arial, sans-serif;
-    background-color: #fffaf5;
+    background: #fff8fb;
     text-align: center;
 }
 
-h1{
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+.header-image{
+    width: 100%;
+    max-width: 1200px;
+    height: 420px;      /* 好きな高さに調整 */
+    object-fit: cover;  /* 下側が少し切れる */
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,.2);
+}
+
+.logo {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+h1 {
     color: #e91e63;
 }
 
+h3 {
+    color: #9e2950d8;
+}
+
 /* 商品一覧 */
-.products{
+.products {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -18,17 +51,19 @@ h1{
 }
 
 /* 商品の箱 */
-.product{
+.product {
     width: 220px;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
     background: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
 }
 
 /* 画像 */
-.product img{
+.product img {
     width: 180px;
     height: 180px;
     object-fit: cover;
@@ -36,19 +71,19 @@ h1{
 }
 
 /* 商品名 */
-.product h2{
+.product h2 {
     font-size: 18px;
 }
 
 /* 値段 */
-.product p{
+.product p {
     color: red;
     font-weight: bold;
 }
 
 /* ボタン */
-button{
-    background-color: #ff6699;
+button {
+    background-color: #9e2950d8;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -56,6 +91,60 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background-color: #e91e63;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 600px;
+}
+
+.popup-box img {
+    width: 450px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.popup-box p {
+    font-size: 24px;
+    color: red;
+    font-weight: bold;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+input {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.cart {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
