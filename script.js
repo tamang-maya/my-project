@@ -160,8 +160,8 @@ function showProducts() {
 }
 
 // 購入手続きボタン用
-function checkout() {
-    alert("ご購入ありがとうございます！ネパールへのお届け手続きを開始します。");
+function checkout(){
+    document.getElementById("orderForm").style.display = "block";
 }
 
 function enterSearch(event) {
@@ -172,4 +172,19 @@ function enterSearch(event) {
 
     }
 
+}
+function order(){
+
+    let name = document.getElementById("name").value;
+    let address = document.getElementById("address").value;
+    let phone = document.getElementById("phone").value;
+
+    if(name == "" || address == "" || phone == ""){
+
+        alert("名前・住所・電話番号を入力してください。");
+        return;
+
+    }
+
+    alert("注文ありがとうございました！");
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <header>
         <img src="header img.png" alt="Sakura Shop Nepal Logo" class="header-image">
@@ -21,33 +22,40 @@
     <p>ネパールで日本の化粧品を購入するのは難しいですが、Sakura Shop Nepalでは、日本の化粧品をネパールにお届けします。ぜひご利用ください！</p>
 
     <!-- API Live Status Badge -->
-    <div style="background: #e0f2fe; color: #0369a1; padding: 10px; border-radius: 5px; margin: 15px 0; display: inline-block; font-size: 0.9rem;">
-        🌐 Live Exchange Rate API Status: <span id="api-status" style="font-weight: bold;">Loading conversion rate...</span>
+    <div class="api-status">
+        🌐 Live Exchange Rate API Status: 
+        <span id="api-status">Loading conversion rate...</span> 
     </div>
+
+    <div class="currency-box">
+    <p class="currency-title">
+        🇳🇵 通貨変換ツール (Currency Tool)
+    </p>
+
+    <button onclick="convertToNPR()">
+        ネパール・ルピーに変換する
+    </button>
+</div>
     <br>
 
     <button onclick="showProducts()">商品を見る</button>
     <br><br>
 
-    <input
-        type="text"
-        id="searchbox"
-        placeholder="商品を入力"
-        onkeypress="enterSearch(event)"
-    >
+    <input type="text" id="searchbox" placeholder="商品を入力" onkeypress="enterSearch(event)">
     <button onclick="searchProducts()">検索</button>
     <button onclick="showALLProducts()">すべての商品表示</button>
 
     <!-- Currency Conversion Feature Box -->
     <div style="margin: 20px 0; padding: 15px; background: #fff5f5; border: 1px solid #fecdd3; border-radius: 8px;">
         <p style="font-weight: bold; margin-bottom: 8px; color: #be123c;">🇳🇵 通貨変換ツール (Currency Tool)</p>
-        <button onclick="convertToNPR()" style="background-color: #df4759; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">ネパール・ルピーに変換する</button>
+        <button onclick="convertToNPR()"
+            style="background-color: #df4759; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">ネパール・ルピーに変換する</button>
     </div>
 
     <div class="products">
         <!-- data-price attributes help JavaScript calculate currency dynamically -->
         <div class="product" data-price="700">
-            <img src="canmake-lip.webp.webp">
+            <img src="canmake-lip.webp">
             <h2>CANMAKE リップ</h2>
             <p class="price-display">¥700</p>
             <button onclick="addCart(this)">カートに追加</button>
@@ -117,7 +125,7 @@
     </div>
 
     <h3>合計: <span id="totalPrice">¥0</span></h3>
-    <button onclick="checkout()">購入手続き</button>
+   
 
     <h2>おすすめ商品</h2>
 
@@ -129,6 +137,23 @@
             <button onclick="closePopup()">閉じる</button>
         </div>
     </div>
+    <button onclick="checkout()">購入手続き</button>
+    <div id="orderForm" class="orderForm">
+        <h2>注文情報</h2>
+        <p>お名前</p>
+        <input type="text" id="name">
 
+        <p>住所</p>
+        <input type="text" id="address">
+        <p>電話番号</p>
+        <input type="text" id="phone">
+        <br><br>
+
+        <button onclick="order()">注文する</button>
+
+
+
+    </div>
 </body>
+
 </html>
